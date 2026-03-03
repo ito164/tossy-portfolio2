@@ -19,16 +19,16 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-radial-[circle_at_center,_transparent_0%,_var(--color-dark-bg)_80%] pointer-events-none" />
 
             {/* Content */}
-            <div className="relative z-10 w-full px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-32 pb-20 lg:py-0 min-h-screen">
+            <div className="relative z-10 w-full px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center pt-24 pb-16 lg:py-0 min-h-screen">
 
                 {/* Text Content (Left Side) */}
                 <motion.div
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100 }}
-                    className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1"
+                    className="flex flex-col items-center lg:items-start text-center lg:text-left order-1"
                 >
-                    <div className="flex items-center gap-2 mb-6">
+                    <div className="flex items-center gap-2 mb-6 mt-8 lg:mt-0">
                         <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-[var(--color-neon-gold)] animate-pulse" />
                         <span className="text-[var(--color-neon-gold)] font-bold tracking-widest text-xs md:text-sm border border-[var(--color-neon-gold)] px-3 py-1 rounded-full bg-[var(--color-neon-gold)]/10 shadow-[0_0_10px_var(--color-neon-gold)]">
                             オリパ特化型デザイン制作・外注
@@ -76,7 +76,7 @@ export default function HeroSection() {
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 100, delay: 0.2 }}
-                    className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center order-1 lg:order-2"
+                    className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px] flex items-center justify-center order-2"
                 >
                     {/* Image 1 (Back/Left) */}
                     <motion.img
