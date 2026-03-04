@@ -24,16 +24,11 @@ export default function ContactSection() {
         // Initial check
         setPlanFromUrl();
 
-        // Listen for popstate (browser back/forward) and a custom event for pushState
+        // Listen for popstate (browser back/forward)
         window.addEventListener('popstate', setPlanFromUrl);
-        // We override pushState to fire an event in our PricingSection or just poll/re-trigger
-        // A better approach is overriding pushState globally or polling, but for simplicity here we just run it again when component mounts/updates
-        // Let's add an interval just in case pushState didn't trigger a re-render
-        const interval = setInterval(setPlanFromUrl, 500);
 
         return () => {
             window.removeEventListener('popstate', setPlanFromUrl);
-            clearInterval(interval);
         };
     }, []);
 
@@ -163,7 +158,13 @@ ${formState.message || "記載なし"}
                                     <button
                                         type="button"
                                         key={plan}
-                                        onClick={() => setFormState({ ...formState, plan })}
+                                        onClick={() => {
+                                            // Handle setting state and also update URL params so it matches
+                                            setFormState({ ...formState, plan, deadline: "NORMAL" });
+                                            const url = new URL(window.location.href);
+                                            url.searchParams.set('plan', plan);
+                                            window.history.replaceState({}, '', url);
+                                        }}
                                         className={`p-4 rounded-lg border font-bold transition-all ${formState.plan === plan
                                             ? "bg-[var(--color-neon-gold)] text-black border-[var(--color-neon-gold)]"
                                             : "bg-black/50 text-gray-400 border-white/20 hover:border-white"
@@ -185,11 +186,29 @@ ${formState.message || "記載なし"}
                                 <select
                                     value={formState.deadline}
                                     onChange={(e) => setFormState({ ...formState, deadline: e.target.value })}
-                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none"
+                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none appearance-none"
                                 >
-                                    <option value="NORMAL">通常（2〜3営業日）</option>
-                                    <option value="EXPRESS">特急（+20% / 最短翌日）</option>
-                                    <option value="RELAX">急ぎではない</option>
+                                    {formState.plan === "TRIAL" && (
+                                        <>
+                                            <option value="NORMAL">通常（2日以内）</option>
+                                            <option value="EXPRESS">特急（+20% / 最短当日）</option>
+                                            <option value="RELAX">急ぎではない</option>
+                                        </>
+                                    )}
+                                    {formState.plan === "SERIES" && (
+                                        <>
+                                            <option value="NORMAL">通常（3営業日以内）</option>
+                                            <option value="EXPRESS">特急（+20% / 最短24時間以内）</option>
+                                            <option value="RELAX">急ぎではない</option>
+                                        </>
+                                    )}
+                                    {formState.plan === "GOD" && (
+                                        <>
+                                            <option value="NORMAL">通常（5日以内）</option>
+                                            <option value="EXPRESS">特急（+20% / 最短2日以内）</option>
+                                            <option value="RELAX">急ぎではない</option>
+                                        </>
+                                    )}
                                 </select>
                             </div>
                         )}
