@@ -111,7 +111,7 @@ export default function HeroSection() {
                     >
                         <button
                             onClick={() => {
-                                const portfolioSection = document.getElementById("portfolio");
+                                const portfolioSection = document.getElementById("works");
                                 if (portfolioSection) {
                                     portfolioSection.scrollIntoView({ behavior: "smooth" });
                                 }
@@ -120,7 +120,7 @@ export default function HeroSection() {
                         >
                             <span className="block skew-x-[10deg] flex items-center justify-center gap-2 md:gap-3">
                                 <Zap className="w-5 h-5 md:w-6 md:h-6 fill-black" />
-                                とりあえずサムネを見てみる
+                                まずはサムネイルを見てみる
                                 <Zap className="w-5 h-5 md:w-6 md:h-6 fill-black" />
                             </span>
                             <div className="absolute inset-0 border-2 border-[var(--color-neon-gold)] rounded-sm translate-x-1 translate-y-1 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" />

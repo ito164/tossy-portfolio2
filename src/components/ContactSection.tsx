@@ -48,6 +48,22 @@ export default function ContactSection() {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
 
+        // Calculate total attachment size (Web3Forms free tier limit is 5MB)
+        const attachments = formData.getAll("attachment") as File[];
+        let totalSize = 0;
+        for (const file of attachments) {
+            if (file.name) {
+                totalSize += file.size;
+            }
+        }
+
+        const maxSizeBytes = 5 * 1024 * 1024; // 5MB
+        if (totalSize > maxSizeBytes) {
+            alert("添付ファイルの合計サイズが5MBを超えています。容量を減らすか、ギガファイル便などのURLを「ご相談・ご依頼詳細」に記載してください。");
+            setIsSubmitting(false);
+            return;
+        }
+
         // Web3Forms setup
         formData.append("access_key", "53560f57-d71f-4cf1-9f58-b1b381213912");
         formData.append("subject", `【とっしーデザイン】${formState.name}様よりお問い合わせ`);
@@ -200,7 +216,7 @@ ${formState.otherNotes || "記載なし"}
                                     multiple
                                     className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[var(--color-neon-gold)] file:text-black hover:file:bg-yellow-500"
                                 />
-                                <p className="text-xs text-gray-500 mt-1">※画像やZipファイルを複数選択できます（最大5枚程度 / 合計5MB推奨）</p>
+                                <p className="text-xs text-gray-500 mt-1">※画像やZipファイルを複数選択できます（最大5枚程度 / 合計5MB以内）</p>
                             </div>
 
                             <div className="space-y-2">

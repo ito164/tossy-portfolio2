@@ -49,7 +49,7 @@ export default function PortfolioGrid() {
     const [hoveredId, setHoveredId] = useState<number | null>(null);
 
     return (
-        <section className="py-24 px-4 bg-[var(--color-dark-bg)]">
+        <section id="works" className="py-24 px-4 bg-[var(--color-dark-bg)]">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-4xl md:text-6xl font-black font-display text-center mb-16">
                     <span className="text-stroke-neon-gold">WORKS</span>
