@@ -8,7 +8,10 @@ export default function ContactSection() {
         email: "",
         plan: "FREE",
         deadline: "NORMAL",
-        message: "",
+        titleName: "",
+        subText: "",
+        designImageRef: "",
+        otherNotes: "",
     });
 
     // Handle external plan selections
@@ -46,19 +49,16 @@ export default function ContactSection() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        try {
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                },
-                body: JSON.stringify({
-                    access_key: "53560f57-d71f-4cf1-9f58-b1b381213912", // Web3Forms Access Key
-                    subject: `【とっしーデザイン】${formState.name}様よりお問い合わせ`,
-                    from_name: formState.name,
-                    email: formState.email,
-                    message: `
+        const form = e.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+        // Web3Forms setup
+        formData.append("access_key", "53560f57-d71f-4cf1-9f58-b1b381213912");
+        formData.append("subject", `【とっしーデザイン】${formState.name}様よりお問い合わせ`);
+        formData.append("from_name", formState.name);
+
+        // Build the combined message
+        const combinedMessage = `
 ■ お名前 / 貴社名
 ${formState.name}
 
@@ -71,10 +71,24 @@ ${formState.plan === "FREE" ? "まずは無料相談" : formState.plan}
 ■ 希望納期
 ${formState.plan === "FREE" ? "なし（無料相談）" : formState.deadline}
 
-■ ご相談詳細
-${formState.message || "記載なし"}
-                    `,
-                }),
+■ タイトル名
+${formState.titleName || "記載なし"}
+
+■ サブテキスト（煽り文句など）
+${formState.subText || "記載なし"}
+
+■ ご希望のデザインイメージ
+${formState.designImageRef || "記載なし"}
+
+■ その他・備考
+${formState.otherNotes || "記載なし"}
+        `;
+        formData.append("message", combinedMessage);
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData,
             });
 
             if (response.ok) {
@@ -138,6 +152,7 @@ ${formState.message || "記載なし"}
                                 <input
                                     required
                                     type="text"
+                                    name="name"
                                     value={formState.name}
                                     onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                                     className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
@@ -149,6 +164,7 @@ ${formState.message || "記載なし"}
                                 <input
                                     required
                                     type="email"
+                                    name="email"
                                     value={formState.email}
                                     onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                                     className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
@@ -220,15 +236,63 @@ ${formState.message || "記載なし"}
                             </div>
                         )}
 
-                        {/* Message */}
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-400">ご相談詳細（任意）</label>
-                            <textarea
-                                value={formState.message}
-                                onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                                className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-32"
-                                placeholder="「〇〇のような雰囲気で」「手持ちのカード画像を使いたい」など"
-                            />
+                        {/* Detailed Request Fields */}
+                        <div className="space-y-6 pt-4 border-t border-white/10">
+                            <h3 className="text-lg font-bold text-[var(--color-neon-gold)]">デザイン詳細（任意）</h3>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-gray-400">タイトル名</label>
+                                    <input
+                                        type="text"
+                                        value={formState.titleName}
+                                        onChange={(e) => setFormState({ ...formState, titleName: e.target.value })}
+                                        className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
+                                        placeholder="例：スマッシュMAXガチャ"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-bold text-gray-400">サブテキスト（煽り文句）</label>
+                                    <input
+                                        type="text"
+                                        value={formState.subText}
+                                        onChange={(e) => setFormState({ ...formState, subText: e.target.value })}
+                                        className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
+                                        placeholder="例：残りわずか！"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-bold text-gray-400">ご希望のデザインイメージ</label>
+                                <textarea
+                                    value={formState.designImageRef}
+                                    onChange={(e) => setFormState({ ...formState, designImageRef: e.target.value })}
+                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-24"
+                                    placeholder="「〇〇のような雰囲気で」「かっこいい系」「URL: https://...」など"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-bold text-gray-400">カード素材などの添付（任意）</label>
+                                <input
+                                    type="file"
+                                    name="attachment"
+                                    accept="image/*,.zip,.rar"
+                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[var(--color-neon-gold)] file:text-black hover:file:bg-yellow-500"
+                                />
+                                <p className="text-xs text-gray-500 mt-1">※画像やZipファイルを選択できます（最大5MB程度）</p>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-bold text-gray-400">その他・備考</label>
+                                <textarea
+                                    value={formState.otherNotes}
+                                    onChange={(e) => setFormState({ ...formState, otherNotes: e.target.value })}
+                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-32"
+                                    placeholder="その他伝えておきたい事があればご記入ください"
+                                />
+                            </div>
                         </div>
 
                         {/* Submit Button */}
