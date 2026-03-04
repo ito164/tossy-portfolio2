@@ -4,15 +4,18 @@ import { AlertCircle, Clock, Zap } from "lucide-react";
 const PAIN_POINTS = [
     {
         icon: <Zap className="w-8 h-8 text-[var(--color-neon-purple)]" />,
-        text: "「中身（カード）は豪華なのに、サムネが地味でクリックされない…」"
+        text: "「中身（カード）は豪華なのに、サムネが地味でクリックされない…」",
+        solution: "とっしーのデザインはめちゃくちゃ豪華！ユーザーの「射幸心」を限界まで煽り、圧倒的なクリック率に直結させます。"
     },
     {
         icon: <AlertCircle className="w-8 h-8 text-red-500" />,
-        text: "「毎回似たようなデザインになってしまい、新作感が出ない…」"
+        text: "「毎回似たようなデザインになってしまい、新作感が出ない…」",
+        solution: "オリパデザイン歴3年以上のノウハウ！豊富なデザインの引き出しから、毎回「新鮮で心躍る」様々な角度の見せ方を提案します。"
     },
     {
         icon: <Clock className="w-8 h-8 text-[var(--color-neon-gold)]" />,
-        text: "「スピード感が命なのに、デザインの修正に時間がかかりすぎる…」"
+        text: "「スピード感が命なのに、デザインの修正に時間がかかりすぎる…」",
+        solution: "安心の「爆速」レスポンス！修正のご要望には【24時間以内】に必ず対応し、あなたの販売スケジュールを決して止めません。"
     }
 ];
 
@@ -35,7 +38,7 @@ export default function EmpathySection() {
                     <span className="text-white">起きていませんか？</span>
                 </motion.h2>
 
-                <div className="space-y-6 mb-20 text-left md:text-center">
+                <div className="space-y-8 mb-20 text-left md:text-center">
                     {PAIN_POINTS.map((point, index) => (
                         <motion.div
                             key={index}
@@ -43,14 +46,35 @@ export default function EmpathySection() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.2 }}
-                            className="bg-[#111] border border-white/10 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 shadow-[0_0_20px_rgba(0,0,0,0.5)] transform hover:scale-[1.02] transition-transform duration-300"
+                            className="bg-[#111] border border-white/10 rounded-xl p-6 md:p-8 flex flex-col gap-6 shadow-[0_0_20px_rgba(0,0,0,0.5)] relative overflow-hidden group"
                         >
-                            <div className="shrink-0 bg-black/50 p-4 rounded-full border border-white/5 shadow-inner">
-                                {point.icon}
+                            {/* Hover Highlight */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+
+                            {/* Problem */}
+                            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 relative z-10">
+                                <div className="shrink-0 bg-black/50 p-4 rounded-full border border-white/5 shadow-inner">
+                                    {point.icon}
+                                </div>
+                                <p className="text-lg md:text-2xl font-bold text-gray-300 leading-relaxed md:text-left flex-1">
+                                    {point.text}
+                                </p>
                             </div>
-                            <p className="text-xl md:text-2xl font-bold text-gray-200 leading-relaxed md:text-left flex-1">
-                                {point.text}
-                            </p>
+
+                            {/* Solution Arrow / Divider */}
+                            <div className="flex items-center justify-center lg:justify-start lg:pl-24 relative z-10">
+                                <div className="w-1 h-8 md:h-12 bg-gradient-to-b from-transparent via-[var(--color-neon-gold)] to-[var(--color-neon-gold)] opacity-80 mt-[-1rem] mb-[-1rem] rounded-full"></div>
+                            </div>
+
+                            {/* Tossy's Answer (Solution) */}
+                            <div className="bg-gradient-to-br from-[var(--color-dark-bg)] to-black border border-[var(--color-neon-gold)]/30 rounded-lg p-5 md:p-6 md:ml-16 relative z-10 shadow-[0_0_15px_rgba(255,215,0,0.05)]">
+                                <span className="absolute -top-3 left-4 bg-[var(--color-neon-gold)] text-black text-xs font-black px-3 py-1 rounded shadow-md">
+                                    とっしーのアンサー
+                                </span>
+                                <p className="text-base md:text-lg font-bold text-white mt-2 leading-relaxed text-left">
+                                    {point.solution}
+                                </p>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
@@ -71,8 +95,8 @@ export default function EmpathySection() {
                     </p>
                 </motion.div>
             </div>
-            
-             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--color-neon-gold)] to-transparent opacity-30"></div>
+
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--color-neon-gold)] to-transparent opacity-30"></div>
         </section>
     );
 }
