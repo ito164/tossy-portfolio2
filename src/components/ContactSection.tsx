@@ -292,12 +292,14 @@ ${formState.otherNotes || "記載なし"}
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-bold text-gray-400">その他・備考</label>
+                                <label className="text-sm font-bold text-gray-400">
+                                    {formState.plan === "FREE" ? "ご相談内容" : "その他・備考"}
+                                </label>
                                 <textarea
                                     value={formState.otherNotes}
                                     onChange={(e) => setFormState({ ...formState, otherNotes: e.target.value })}
                                     className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-32"
-                                    placeholder="その他伝えておきたい事があればご記入ください"
+                                    placeholder={formState.plan === "FREE" ? "ご相談内容をご記入ください" : "その他伝えておきたい事があればご記入ください"}
                                 />
                             </div>
                         </div>
