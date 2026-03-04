@@ -109,14 +109,11 @@ export default function HeroSection() {
                         transition={{ delay: 0.3 }}
                         className="mt-6 mb-0 lg:mb-0 group w-full lg:w-auto flex flex-col items-center lg:items-start"
                     >
-                        <button
-                            onClick={() => {
-                                const portfolioSection = document.getElementById("works");
-                                if (portfolioSection) {
-                                    portfolioSection.scrollIntoView({ behavior: "smooth" });
-                                }
-                            }}
-                            className="relative px-4 py-3 md:px-10 md:py-5 bg-white text-black font-black text-base md:text-xl rounded-sm skew-x-[-10deg] hover:scale-105 transition-transform duration-200 shadow-[0_0_30px_var(--color-neon-gold)] w-[80%] lg:w-auto"
+                        <a
+                            href="https://with2023.myportfolio.com/161fa1a2c9d32d"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative px-4 py-3 md:px-10 md:py-5 bg-white text-black font-black text-base md:text-xl rounded-sm skew-x-[-10deg] hover:scale-105 transition-transform duration-200 shadow-[0_0_30px_var(--color-neon-gold)] w-[80%] lg:w-auto inline-block text-center"
                         >
                             <span className="block skew-x-[10deg] flex items-center justify-center gap-2 md:gap-3">
                                 <Zap className="w-5 h-5 md:w-6 md:h-6 fill-black" />
@@ -124,7 +121,7 @@ export default function HeroSection() {
                                 <Zap className="w-5 h-5 md:w-6 md:h-6 fill-black" />
                             </span>
                             <div className="absolute inset-0 border-2 border-[var(--color-neon-gold)] rounded-sm translate-x-1 translate-y-1 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" />
-                        </button>
+                        </a>
                         <p className="text-gray-400 text-xs md:text-sm mt-4 font-bold tracking-widest text-center w-[80%] lg:w-full lg:text-left">
                             ※ 毎月3社限定
                         </p>
