@@ -29,7 +29,7 @@ const PLANS = [
             "静止画サムネ ＋ コピー考案",
             "売れる要素を詰め込んだ構成提案",
             "修正 2回まで",
-            "最短 2日納品",
+            "最短 24時間以内",
         ],
         color: "from-[var(--color-neon-purple)] to-blue-600",
         textColor: "text-white",

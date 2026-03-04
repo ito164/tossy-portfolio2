@@ -228,7 +228,7 @@ ${formState.otherNotes || "記載なし"}
                                     {formState.plan === "GOD" && (
                                         <>
                                             <option value="NORMAL">通常（5日以内）</option>
-                                            <option value="EXPRESS">特急（+20% / 最短2日以内）</option>
+                                            <option value="EXPRESS">特急（+20% / 最短3日以内）</option>
                                             <option value="RELAX">急ぎではない</option>
                                         </>
                                     )}
