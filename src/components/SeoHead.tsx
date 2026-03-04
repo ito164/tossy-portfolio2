@@ -8,7 +8,7 @@ interface SeoProps {
 
 export default function SeoHead({
     title = "とっしー | ネットオリパ特化型デザイン制作",
-    description = "「その1枚が、完売までの最短ルート。」オリパ運営者専門のデザインパートナー。年収1000万プレイヤーを生み出す「売れるデザイン」を提供します。",
+    description = "「その1枚が、完売までの最短ルート。」オリパ運営者専門のデザインパートナー。カードゲームユーザーの心理を深く理解し、目を引く『ギラギラ感』と信頼感のある高品質なネットオリパ用サムネイル・画像制作を提供します。",
     path = "/"
 }: SeoProps) {
     const url = `https://tossy-design.com${path}`; // Dummy domain for now
