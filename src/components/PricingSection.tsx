@@ -102,7 +102,7 @@ export default function PricingSection() {
                                 {plan.price}
                             </div>
                             <div className={`text-xs mb-4 font-bold opacity-60 ${plan.textColor}`}>
-                                ※ 表示価格は税別です
+                                ※ 表示価格とは別に消費税が加算されます
                             </div>
                             <p className={`text-sm mb-8 opacity-80 font-bold ${plan.textColor}`}>
                                 {plan.desc}
