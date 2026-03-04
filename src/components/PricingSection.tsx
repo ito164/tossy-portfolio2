@@ -16,7 +16,7 @@ const PLANS = [
         ],
         color: "from-yellow-400 to-orange-500",
         textColor: "text-black",
-        buttonBg: "bg-black text-white hover:bg-gray-800",
+        buttonBg: "bg-black text-white hover:bg-gray-800 hover:scale-105 transition-transform",
         recommend: false,
     },
     {
@@ -33,7 +33,7 @@ const PLANS = [
         ],
         color: "from-[var(--color-neon-purple)] to-blue-600",
         textColor: "text-white",
-        buttonBg: "bg-white text-[var(--color-neon-purple)] hover:bg-gray-100",
+        buttonBg: "bg-white text-[var(--color-neon-purple)] hover:bg-gray-100 hover:scale-105 transition-transform",
         recommend: true,
     },
     {
