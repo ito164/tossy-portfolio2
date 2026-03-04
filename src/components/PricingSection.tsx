@@ -124,6 +124,9 @@ export default function PricingSection() {
                                     url.searchParams.set('plan', plan.id);
                                     window.history.pushState({}, '', url);
 
+                                    // Dispatch custom event for ContactSection to reliably catch
+                                    window.dispatchEvent(new CustomEvent('planSelected', { detail: { plan: plan.id } }));
+
                                     // Scroll to contact section
                                     const contactSection = document.getElementById("contact");
                                     if (contactSection) {

@@ -11,7 +11,7 @@ export default function ContactSection() {
         message: "",
     });
 
-    // Handle URL parameters for pre-selected plans
+    // Handle external plan selections
     useEffect(() => {
         const setPlanFromUrl = () => {
             const params = new URLSearchParams(window.location.search);
@@ -21,14 +21,21 @@ export default function ContactSection() {
             }
         };
 
-        // Initial check
+        // Initial check on mount
         setPlanFromUrl();
 
-        // Listen for popstate (browser back/forward)
-        window.addEventListener('popstate', setPlanFromUrl);
+        // Custom event listener for when a plan is selected from PricingSection
+        const handlePlanSelected = (e: Event) => {
+            const customEvent = e as CustomEvent<{ plan: string }>;
+            if (customEvent.detail?.plan) {
+                setFormState(prev => ({ ...prev, plan: customEvent.detail.plan }));
+            }
+        };
+
+        window.addEventListener('planSelected', handlePlanSelected);
 
         return () => {
-            window.removeEventListener('popstate', setPlanFromUrl);
+            window.removeEventListener('planSelected', handlePlanSelected);
         };
     }, []);
 
