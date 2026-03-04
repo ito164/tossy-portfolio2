@@ -114,7 +114,21 @@ export default function PricingSection() {
                                 ))}
                             </ul>
 
-                            <button className={`w-full py-4 rounded-lg font-black text-lg transition-colors ${plan.buttonBg}`}>
+                            <button
+                                onClick={() => {
+                                    // Update URL with selected plan
+                                    const url = new URL(window.location.href);
+                                    url.searchParams.set('plan', plan.id);
+                                    window.history.pushState({}, '', url);
+
+                                    // Scroll to contact section
+                                    const contactSection = document.getElementById("contact");
+                                    if (contactSection) {
+                                        contactSection.scrollIntoView({ behavior: "smooth" });
+                                    }
+                                }}
+                                className={`w-full py-4 rounded-lg font-black text-lg transition-colors ${plan.buttonBg}`}
+                            >
                                 相談する
                             </button>
                         </motion.div>

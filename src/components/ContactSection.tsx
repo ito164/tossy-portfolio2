@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
@@ -10,6 +10,33 @@ export default function ContactSection() {
         deadline: "NORMAL",
         message: "",
     });
+
+    // Handle URL parameters for pre-selected plans
+    useEffect(() => {
+        const setPlanFromUrl = () => {
+            const params = new URLSearchParams(window.location.search);
+            const planParam = params.get('plan');
+            if (planParam && ["FREE", "TRIAL", "SERIES", "GOD"].includes(planParam)) {
+                setFormState(prev => ({ ...prev, plan: planParam }));
+            }
+        };
+
+        // Initial check
+        setPlanFromUrl();
+
+        // Listen for popstate (browser back/forward) and a custom event for pushState
+        window.addEventListener('popstate', setPlanFromUrl);
+        // We override pushState to fire an event in our PricingSection or just poll/re-trigger
+        // A better approach is overriding pushState globally or polling, but for simplicity here we just run it again when component mounts/updates
+        // Let's add an interval just in case pushState didn't trigger a re-render
+        const interval = setInterval(setPlanFromUrl, 500);
+
+        return () => {
+            window.removeEventListener('popstate', setPlanFromUrl);
+            clearInterval(interval);
+        };
+    }, []);
+
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSent, setIsSent] = useState(false);
 
@@ -63,7 +90,7 @@ ${formState.message || "記載なし"}
     };
 
     return (
-        <section className="py-24 px-4 bg-black relative overflow-hidden">
+        <section id="contact" className="py-24 px-4 bg-black relative overflow-hidden">
             {/* Background Decor */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--color-neon-purple)_0%,_transparent_50%)] opacity-20" />
 
