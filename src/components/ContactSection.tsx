@@ -238,40 +238,46 @@ ${formState.otherNotes || "記載なし"}
 
                         {/* Detailed Request Fields */}
                         <div className="space-y-6 pt-4 border-t border-white/10">
-                            <h3 className="text-lg font-bold text-[var(--color-neon-gold)]">デザイン詳細（任意）</h3>
+                            <h3 className="text-lg font-bold text-[var(--color-neon-gold)]">
+                                {formState.plan === "FREE" ? "ご相談内容" : "デザイン詳細（任意）"}
+                            </h3>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-gray-400">タイトル名</label>
-                                    <input
-                                        type="text"
-                                        value={formState.titleName}
-                                        onChange={(e) => setFormState({ ...formState, titleName: e.target.value })}
-                                        className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
-                                        placeholder="例：スマッシュMAXガチャ"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-sm font-bold text-gray-400">サブテキスト（煽り文句）</label>
-                                    <input
-                                        type="text"
-                                        value={formState.subText}
-                                        onChange={(e) => setFormState({ ...formState, subText: e.target.value })}
-                                        className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
-                                        placeholder="例：残りわずか！"
-                                    />
-                                </div>
-                            </div>
+                            {formState.plan !== "FREE" && (
+                                <>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="space-y-2">
+                                            <label className="text-sm font-bold text-gray-400">タイトル名</label>
+                                            <input
+                                                type="text"
+                                                value={formState.titleName}
+                                                onChange={(e) => setFormState({ ...formState, titleName: e.target.value })}
+                                                className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
+                                                placeholder="例：スマッシュMAXガチャ"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-sm font-bold text-gray-400">サブテキスト（煽り文句）</label>
+                                            <input
+                                                type="text"
+                                                value={formState.subText}
+                                                onChange={(e) => setFormState({ ...formState, subText: e.target.value })}
+                                                className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
+                                                placeholder="例：残りわずか！"
+                                            />
+                                        </div>
+                                    </div>
 
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-gray-400">ご希望のデザインイメージ</label>
-                                <textarea
-                                    value={formState.designImageRef}
-                                    onChange={(e) => setFormState({ ...formState, designImageRef: e.target.value })}
-                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-24"
-                                    placeholder="「〇〇のような雰囲気で」「かっこいい系」「URL: https://...」など"
-                                />
-                            </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-gray-400">ご希望のデザインイメージ</label>
+                                        <textarea
+                                            value={formState.designImageRef}
+                                            onChange={(e) => setFormState({ ...formState, designImageRef: e.target.value })}
+                                            className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-24"
+                                            placeholder="「〇〇のような雰囲気で」「かっこいい系」「URL: https://...」など"
+                                        />
+                                    </div>
+                                </>
+                            )}
 
                             <div className="space-y-2">
                                 <label className="text-sm font-bold text-gray-400">カード素材などの添付（任意）</label>
@@ -279,9 +285,10 @@ ${formState.otherNotes || "記載なし"}
                                     type="file"
                                     name="attachment"
                                     accept="image/*,.zip,.rar"
+                                    multiple
                                     className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-[var(--color-neon-gold)] file:text-black hover:file:bg-yellow-500"
                                 />
-                                <p className="text-xs text-gray-500 mt-1">※画像やZipファイルを選択できます（最大5MB程度）</p>
+                                <p className="text-xs text-gray-500 mt-1">※画像やZipファイルを複数選択できます（最大5枚程度 / 合計5MB推奨）</p>
                             </div>
 
                             <div className="space-y-2">
