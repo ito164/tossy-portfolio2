@@ -79,19 +79,7 @@ export default function PortfolioGrid() {
                                     className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
                                 />
 
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
 
-                                {/* Title */}
-                                <div className="absolute bottom-6 left-6 z-10 transition-opacity duration-300 group-hover:opacity-0">
-                                    <h3 className="text-2xl font-black font-display text-white mb-2 drop-shadow-lg">
-                                        {work.title}
-                                    </h3>
-                                    <span className="flex items-center gap-2 text-[var(--color-neon-gold)] font-bold text-sm border border-[var(--color-neon-gold)] px-2 py-1 rounded w-fit bg-black/50">
-                                        {work.icon}
-                                        {work.label}
-                                    </span>
-                                </div>
 
                                 {/* Hover Reveal */}
                                 <div className="absolute inset-0 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
