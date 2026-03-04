@@ -5,7 +5,7 @@ const PLANS = [
     {
         id: "TRIAL",
         name: "【初回限定】爆アド・お試しプラン",
-        price: "¥4,400",
+        price: "¥4,000",
         desc: "「まずはとっしーの威力を体感」してもらうためのエントリープランです。",
         icon: <Zap className="w-8 h-8 text-black" />,
         features: [
@@ -22,7 +22,7 @@ const PLANS = [
     {
         id: "SERIES",
         name: "【集客ブースト】煽りコピー・構成プラン",
-        price: "¥7,700",
+        price: "¥7,000",
         desc: "「何を書いていいか分からない」悩みを解決し、クリック率を最大化。",
         icon: <Package className="w-8 h-8 text-white" />,
         features: [
@@ -39,7 +39,7 @@ const PLANS = [
     {
         id: "GOD",
         name: "【覇権確定】脳汁爆発GIFアニメプラン",
-        price: "¥13,200",
+        price: "¥12,000",
         desc: "Xやオリパサイトでの手を止めさせる、圧倒的な差別化プラン。",
         icon: <Crown className="w-8 h-8 text-yellow-200" />,
         features: [
