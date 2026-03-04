@@ -6,11 +6,7 @@ export default function ContactSection() {
     const [formState, setFormState] = useState({
         name: "",
         email: "",
-        plan: "FREE",
-        deadline: "NORMAL",
-        titleName: "",
-        subText: "",
-        designImageRef: "",
+        plan: "TRIAL",
         otherNotes: "",
     });
 
@@ -19,7 +15,7 @@ export default function ContactSection() {
         const setPlanFromUrl = () => {
             const params = new URLSearchParams(window.location.search);
             const planParam = params.get('plan');
-            if (planParam && ["FREE", "TRIAL", "SERIES", "GOD"].includes(planParam)) {
+            if (planParam && ["TRIAL", "SERIES", "GOD"].includes(planParam)) {
                 setFormState(prev => ({ ...prev, plan: planParam }));
             }
         };
@@ -66,21 +62,9 @@ ${formState.name}
 ${formState.email}
 
 ■ ご希望プラン
-${formState.plan === "FREE" ? "まずは無料相談" : formState.plan}
+${formState.plan}
 
-■ 希望納期
-${formState.plan === "FREE" ? "なし（無料相談）" : formState.deadline}
-
-■ タイトル名
-${formState.titleName || "記載なし"}
-
-■ サブテキスト（煽り文句など）
-${formState.subText || "記載なし"}
-
-■ ご希望のデザインイメージ
-${formState.designImageRef || "記載なし"}
-
-■ その他・備考
+■ ご相談詳細
 ${formState.otherNotes || "記載なし"}
         `;
         formData.append("message", combinedMessage);
@@ -176,14 +160,14 @@ ${formState.otherNotes || "記載なし"}
                         {/* Plan Selection */}
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-gray-400">ご希望プラン</label>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                {["FREE", "TRIAL", "SERIES", "GOD"].map((plan) => (
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {["TRIAL", "SERIES", "GOD"].map((plan) => (
                                     <button
                                         type="button"
                                         key={plan}
                                         onClick={() => {
                                             // Handle setting state and also update URL params so it matches
-                                            setFormState({ ...formState, plan, deadline: "NORMAL" });
+                                            setFormState({ ...formState, plan });
                                             const url = new URL(window.location.href);
                                             url.searchParams.set('plan', plan);
                                             window.history.replaceState({}, '', url);
@@ -193,7 +177,6 @@ ${formState.otherNotes || "記載なし"}
                                             : "bg-black/50 text-gray-400 border-white/20 hover:border-white"
                                             }`}
                                     >
-                                        {plan === "FREE" && "まずは無料相談"}
                                         {plan === "TRIAL" && "爆アド・お試し"}
                                         {plan === "SERIES" && "集客ブースト"}
                                         {plan === "GOD" && "脳汁GIFアニメ"}
@@ -202,82 +185,11 @@ ${formState.otherNotes || "記載なし"}
                             </div>
                         </div>
 
-                        {/* Options: Hide when FREE is selected */}
-                        {formState.plan !== "FREE" && (
-                            <div className="space-y-2">
-                                <label className="text-sm font-bold text-gray-400">希望納期</label>
-                                <select
-                                    value={formState.deadline}
-                                    onChange={(e) => setFormState({ ...formState, deadline: e.target.value })}
-                                    className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none appearance-none"
-                                >
-                                    {formState.plan === "TRIAL" && (
-                                        <>
-                                            <option value="NORMAL">通常（2日以内）</option>
-                                            <option value="EXPRESS">特急（+20% / 最短当日）</option>
-                                            <option value="RELAX">急ぎではない</option>
-                                        </>
-                                    )}
-                                    {formState.plan === "SERIES" && (
-                                        <>
-                                            <option value="NORMAL">通常（3営業日以内）</option>
-                                            <option value="EXPRESS">特急（+20% / 最短24時間以内）</option>
-                                            <option value="RELAX">急ぎではない</option>
-                                        </>
-                                    )}
-                                    {formState.plan === "GOD" && (
-                                        <>
-                                            <option value="NORMAL">通常（5日以内）</option>
-                                            <option value="EXPRESS">特急（+20% / 最短3日以内）</option>
-                                            <option value="RELAX">急ぎではない</option>
-                                        </>
-                                    )}
-                                </select>
-                            </div>
-                        )}
-
                         {/* Detailed Request Fields */}
                         <div className="space-y-6 pt-4 border-t border-white/10">
                             <h3 className="text-lg font-bold text-[var(--color-neon-gold)]">
-                                {formState.plan === "FREE" ? "ご相談内容" : "デザイン詳細（任意）"}
+                                ご依頼詳細
                             </h3>
-
-                            {formState.plan !== "FREE" && (
-                                <>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-gray-400">タイトル名</label>
-                                            <input
-                                                type="text"
-                                                value={formState.titleName}
-                                                onChange={(e) => setFormState({ ...formState, titleName: e.target.value })}
-                                                className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
-                                                placeholder="例：スマッシュMAXガチャ"
-                                            />
-                                        </div>
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-gray-400">サブテキスト（煽り文句）</label>
-                                            <input
-                                                type="text"
-                                                value={formState.subText}
-                                                onChange={(e) => setFormState({ ...formState, subText: e.target.value })}
-                                                className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none transition-colors"
-                                                placeholder="例：残りわずか！"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-gray-400">ご希望のデザインイメージ</label>
-                                        <textarea
-                                            value={formState.designImageRef}
-                                            onChange={(e) => setFormState({ ...formState, designImageRef: e.target.value })}
-                                            className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-24"
-                                            placeholder="「〇〇のような雰囲気で」「かっこいい系」「URL: https://...」など"
-                                        />
-                                    </div>
-                                </>
-                            )}
 
                             <div className="space-y-2">
                                 <label className="text-sm font-bold text-gray-400">カード素材などの添付（任意）</label>
@@ -293,13 +205,13 @@ ${formState.otherNotes || "記載なし"}
 
                             <div className="space-y-2">
                                 <label className="text-sm font-bold text-gray-400">
-                                    {formState.plan === "FREE" ? "ご相談内容" : "その他・備考"}
+                                    ご相談・ご依頼詳細
                                 </label>
                                 <textarea
                                     value={formState.otherNotes}
                                     onChange={(e) => setFormState({ ...formState, otherNotes: e.target.value })}
                                     className="w-full bg-black/50 border border-white/20 rounded-lg p-4 text-white focus:border-[var(--color-neon-gold)] focus:outline-none h-32"
-                                    placeholder={formState.plan === "FREE" ? "ご相談内容をご記入ください" : "その他伝えておきたい事があればご記入ください"}
+                                    placeholder="イメージの方向性や、デザインに入れたいテキストなどを自由にご記入ください"
                                 />
                             </div>
                         </div>
