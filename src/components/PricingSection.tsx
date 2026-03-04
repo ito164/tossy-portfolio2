@@ -98,8 +98,11 @@ export default function PricingSection() {
                             <h3 className={`text-xl font-bold font-display mb-2 ${plan.textColor}`}>
                                 {plan.name}
                             </h3>
-                            <div className={`text-4xl font-black mb-4 ${plan.textColor}`}>
+                            <div className={`text-4xl font-black mb-1 ${plan.textColor}`}>
                                 {plan.price}
+                            </div>
+                            <div className={`text-xs mb-4 font-bold opacity-60 ${plan.textColor}`}>
+                                ※ 表示価格は税別です
                             </div>
                             <p className={`text-sm mb-8 opacity-80 font-bold ${plan.textColor}`}>
                                 {plan.desc}

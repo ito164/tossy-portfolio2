@@ -57,10 +57,21 @@ export default function HeroSection() {
                         transition={{ delay: 0.3 }}
                         className="mt-8 mb-4 lg:mb-0 group w-full lg:w-auto flex flex-col items-center lg:items-start"
                     >
-                        <button className="relative px-6 py-4 md:px-10 md:py-5 bg-white text-black font-black text-base md:text-xl rounded-sm skew-x-[-10deg] hover:scale-105 transition-transform duration-200 shadow-[0_0_30px_var(--color-neon-gold)] w-[80%] lg:w-auto">
+                        <button
+                            onClick={() => {
+                                const url = new URL(window.location.href);
+                                url.searchParams.set('plan', 'FREE');
+                                window.history.pushState({}, '', url);
+                                const contactSection = document.getElementById("contact");
+                                if (contactSection) {
+                                    contactSection.scrollIntoView({ behavior: "smooth" });
+                                }
+                            }}
+                            className="relative px-6 py-4 md:px-10 md:py-5 bg-white text-black font-black text-base md:text-xl rounded-sm skew-x-[-10deg] hover:scale-105 transition-transform duration-200 shadow-[0_0_30px_var(--color-neon-gold)] w-[80%] lg:w-auto"
+                        >
                             <span className="block skew-x-[10deg] flex items-center justify-center gap-2 md:gap-3">
                                 <Zap className="w-5 h-5 md:w-6 md:h-6 fill-black" />
-                                いますぐ「爆アド」体験！
+                                まずは無料相談
                                 <Zap className="w-5 h-5 md:w-6 md:h-6 fill-black" />
                             </span>
                             <div className="absolute inset-0 border-2 border-[var(--color-neon-gold)] rounded-sm translate-x-1 translate-y-1 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" />
