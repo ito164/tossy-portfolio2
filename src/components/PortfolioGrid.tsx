@@ -16,7 +16,8 @@ const WORKS = [
         sellingPoint: "レインボーの光沢感で高級感を演出",
         stat: "高単価訴求に最適",
         icon: <Zap className="w-4 h-4 text-[var(--color-neon-gold)]" />,
-        label: "爆アド演出"
+        label: "爆アド演出",
+        badgeText: "爆アド演出用"
     },
     {
         id: 2,
@@ -26,7 +27,8 @@ const WORKS = [
         sellingPoint: "目のハイライト強調で視線誘導",
         stat: "コレクター心を刺激",
         icon: <Heart className="w-4 h-4 text-[var(--color-neon-purple)]" />,
-        label: "美少女SR"
+        label: "美少女SR",
+        badgeText: "美少女キャラ訴求用"
     },
     {
         id: 3,
@@ -36,7 +38,8 @@ const WORKS = [
         sellingPoint: "SNSで配布用のクーポン画像",
         stat: "SNSからサイトへの流入を狙う",
         icon: <Box className="w-4 h-4 text-cyan-400" />,
-        label: "SNS画像"
+        label: "SNS画像",
+        badgeText: "SNS用画像"
     },
 ];
 
@@ -79,6 +82,12 @@ export default function PortfolioGrid() {
                                     className="w-full h-auto transition-transform duration-500 group-hover:scale-110"
                                 />
 
+                                {/* Subtitle Badge (Unobtrusive) */}
+                                <div className="absolute top-3 left-3 z-10 bg-black/60 backdrop-blur-md px-3 py-1 rounded-sm border border-white/10 transition-opacity duration-300 group-hover:opacity-0">
+                                    <span className="text-white text-xs font-bold tracking-wider">
+                                        {work.badgeText}
+                                    </span>
+                                </div>
 
 
                                 {/* Hover Reveal */}
