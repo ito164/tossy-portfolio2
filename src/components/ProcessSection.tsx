@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MessageCircle, Calculator, Image as ImageIcon, Wrench, CheckCircle } from "lucide-react";
+import { MessageCircle, Image as ImageIcon, Wrench, CheckCircle } from "lucide-react";
 
 const PROCESS_STEPS = [
     {
@@ -11,27 +11,20 @@ const PROCESS_STEPS = [
     },
     {
         id: 2,
-        title: "お見積り",
-        description: "ご依頼内容をもとに、納期と金額のお見積りをご提示いたします。",
-        icon: <Calculator className="w-8 h-8 text-white" />,
-        color: "from-purple-500 to-pink-500"
-    },
-    {
-        id: 3,
         title: "初稿提出",
         description: "デザインの方向性に沿ったラフ、または初稿デザインを提出いたします。",
         icon: <ImageIcon className="w-8 h-8 text-white" />,
         color: "from-yellow-400 to-orange-500"
     },
     {
-        id: 4,
+        id: 3,
         title: "修正（必要時）",
         description: "より完璧に仕上げるため、気になる点の修正を行います。",
         icon: <Wrench className="w-8 h-8 text-white" />,
         color: "from-green-400 to-emerald-500"
     },
     {
-        id: 5,
+        id: 4,
         title: "納品",
         description: "完成したデータを、ご指定の形式（PNG/JPG/ZIP等）でスピード納品！",
         icon: <CheckCircle className="w-8 h-8 text-[var(--color-neon-gold)]" />,
