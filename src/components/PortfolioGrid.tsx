@@ -43,7 +43,7 @@ const WORKS = [
     },
 ];
 
-const PORTFOLIO_URL = "https://with2023.myportfolio.com/161fa1a2c9d32d";
+const PORTFOLIO_URL = "https://tossydesign.myportfolio.com/161fa1a2c9d32d";
 
 export default function PortfolioGrid() {
     const [hoveredId, setHoveredId] = useState<number | null>(null);
