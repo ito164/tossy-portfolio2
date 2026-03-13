@@ -4,6 +4,7 @@ import TossyStyleSection from "./components/TossyStyleSection";
 import EmpathySection from "./components/EmpathySection";
 import PortfolioGrid from "./components/PortfolioGrid";
 import ProcessSection from "./components/ProcessSection";
+import FaqSection from "./components/FaqSection";
 import PricingSection from "./components/PricingSection";
 import ContactSection from "./components/ContactSection";
 import SeoHead from "./components/SeoHead";
@@ -38,6 +39,7 @@ export default function App() {
             <TossyStyleSection />
             <PortfolioGrid />
             <ProcessSection />
+            <FaqSection />
             <PricingSection />
             <ContactSection />
           </>
