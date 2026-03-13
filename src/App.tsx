@@ -36,8 +36,8 @@ export default function App() {
         ) : (
           <>
             <HeroSection />
-            <ProfileSection />
             <EmpathySection />
+            <ProfileSection />
             <TossyStyleSection />
             <PortfolioGrid />
             <ProcessSection />
