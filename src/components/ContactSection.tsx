@@ -255,8 +255,8 @@ ${formState.otherNotes || "記載なし"}
                                 </>
                             ) : (
                                 <>
-                                    <Send className="w-6 h-6" />
-                                    今すぐ申し込む
+                                    {formState.plan === "FREE" ? "相談する" : "今すぐ申し込む"}
+                                    <Send className="w-5 h-5" />
                                 </>
                             )}
                         </button>
