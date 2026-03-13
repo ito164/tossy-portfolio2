@@ -28,7 +28,7 @@ const PLANS = [
         features: [
             "静止画サムネ ＋ コピー考案",
             "売れる要素を詰め込んだ構成提案",
-            "修正 2回まで",
+            "修正 1回まで",
             "最短 24時間以内",
         ],
         color: "from-[var(--color-neon-purple)] to-blue-600",
