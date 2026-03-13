@@ -6,6 +6,9 @@ export default function FooterSection() {
                     &copy; {new Date().getFullYear()} とっしーデザイン. All rights reserved.
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                    <a href="#terms" className="text-gray-400 hover:text-[var(--color-neon-gold)] text-sm transition-colors font-bold">
+                        利用規約・重要事項
+                    </a>
                     <a href="#tokutei" className="text-gray-400 hover:text-[var(--color-neon-gold)] text-sm transition-colors font-bold">
                         特定商取引法に基づく表記
                     </a>

@@ -8,6 +8,7 @@ import PricingSection from "./components/PricingSection";
 import ContactSection from "./components/ContactSection";
 import SeoHead from "./components/SeoHead";
 import TokuteiLawPage from "./components/TokuteiLawPage";
+import TermsPage from "./components/TermsPage";
 import FooterSection from "./components/FooterSection";
 
 export default function App() {
@@ -28,6 +29,8 @@ export default function App() {
       <div className="flex-grow">
         {currentHash === "#tokutei" ? (
           <TokuteiLawPage />
+        ) : currentHash === "#terms" ? (
+          <TermsPage />
         ) : (
           <>
             <HeroSection />
