@@ -185,8 +185,8 @@ ${formState.otherNotes || "記載なし"}
                         {/* Plan Selection */}
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-gray-400">ご希望プラン</label>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                {["TRIAL", "SERIES", "GOD"].map((plan) => (
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {["FREE", "TRIAL", "SERIES", "GOD"].map((plan) => (
                                     <button
                                         type="button"
                                         key={plan}
@@ -202,6 +202,7 @@ ${formState.otherNotes || "記載なし"}
                                             : "bg-black/50 text-gray-400 border-white/20 hover:border-white"
                                             }`}
                                     >
+                                        {plan === "FREE" && "無料相談"}
                                         {plan === "TRIAL" && "爆アド・お試し"}
                                         {plan === "SERIES" && "集客ブースト"}
                                         {plan === "GOD" && "脳汁GIFアニメ"}
