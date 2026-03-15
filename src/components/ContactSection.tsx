@@ -15,7 +15,7 @@ export default function ContactSection() {
         const setPlanFromUrl = () => {
             const params = new URLSearchParams(window.location.search);
             const planParam = params.get('plan');
-            if (planParam && ["TRIAL", "SERIES", "GOD"].includes(planParam)) {
+            if (planParam && ["FREE", "TRIAL", "SERIES", "GOD"].includes(planParam)) {
                 setFormState(prev => ({ ...prev, plan: planParam }));
             }
         };
