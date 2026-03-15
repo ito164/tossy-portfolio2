@@ -7,8 +7,8 @@ interface SeoProps {
 }
 
 export default function SeoHead({
-    title = "オリパのサムネイル外注ならとっしーへ！｜オリパデザイン制作",
-    description = "「その1枚が、完売までの最短ルート。」オリパサムネ・画像制作に特化した専門デザイナー。カードゲームユーザーの心理を深く理解し、目を引く『ギラギラ感』と信頼感のある高品質なネットオリパ用サムネイルを提供いたします。業界トップクラスのオリパデザイン外注ならお任せください。",
+    title = "オリパ サムネ制作ならとっしーデザイン｜オリパ サムネイル・デザイン外注",
+    description = "オリパ サムネ制作の専門デザイナー。目を引くオリパ サムネイル・画像を制作。『ギラギラ感』で完売率UP！ネットオリパのサムネ外注・デザイン制作なら、オリパサムネ特化のとっしーデザインにお任せください。",
     path = "/"
 }: SeoProps) {
     const url = `https://tossy-design.com${path}`; // Dummy domain for now
@@ -17,9 +17,9 @@ export default function SeoHead({
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "name": "オリパのサムネイル外注ならとっしーへ！｜オリパデザイン制作",
+        "name": "オリパ サムネ制作ならとっしーデザイン｜オリパ サムネイル・デザイン外注",
         "image": "https://placehold.co/1200x630/black/gold?text=Tossy+Design",
-        "description": "オリパサムネ制作に特化した専門デザインサービス。目を引く高品質なネットオリパ用サムネイル・画像を提供します。",
+        "description": "オリパ サムネ制作に特化した専門デザインサービス。目を引くオリパ サムネイル・ネットオリパ用サムネ画像を提供します。",
         "priceRange": "¥19,800 - ¥98,000",
         "address": {
             "@type": "PostalAddress",
@@ -27,7 +27,7 @@ export default function SeoHead({
         },
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
-            "name": "オリパサムネ・デザイン制作プラン",
+            "name": "オリパ サムネ・デザイン制作プラン",
             "itemListElement": [
                 {
                     "@type": "Offer",

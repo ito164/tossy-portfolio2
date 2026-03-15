@@ -31,7 +31,7 @@ export default function HeroSection() {
                     <div className="flex items-center gap-2 mb-2 mt-4 lg:mt-0">
                         <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-[var(--color-neon-gold)] animate-pulse" />
                         <span className="text-[var(--color-neon-gold)] font-bold tracking-widest text-xs md:text-sm border border-[var(--color-neon-gold)] px-3 py-1 rounded-full bg-[var(--color-neon-gold)]/10 shadow-[0_0_10px_var(--color-neon-gold)]">
-                            オリパ特化型デザイン制作・外注
+                            オリパ サムネ特化型デザイン制作・外注
                         </span>
                         <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-[var(--color-neon-gold)] animate-pulse" />
                     </div>
