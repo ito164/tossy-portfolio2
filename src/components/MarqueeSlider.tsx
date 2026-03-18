@@ -1,20 +1,21 @@
 import { motion } from "framer-motion";
 
-const CARD_COLORS = [
-    "from-red-500 to-orange-500",
-    "from-blue-500 to-cyan-500",
-    "from-purple-500 to-pink-500",
-    "from-green-500 to-emerald-500",
-    "from-yellow-400 to-amber-600",
-];
+// サムネイル画像をインポート
+import marquee1 from "../assets/marquee_1.jpg";
+import marquee2 from "../assets/marquee_2.jpg";
+import marquee3 from "../assets/marquee_3.jpg";
+import marquee4 from "../assets/marquee_4.jpg";
+import marquee5 from "../assets/marquee_5.jpg";
 
-const SLIDE_DURATION = 20;
+const MARQUEE_IMAGES = [marquee1, marquee2, marquee3, marquee4, marquee5];
+
+const SLIDE_DURATION = 25;
 
 export default function MarqueeSlider({ direction = "left" }: { direction?: "left" | "right" }) {
     return (
-        <div className="flex overflow-hidden relative z-0 opacity-30 mix-blend-screen pointer-events-none">
+        <div className="flex overflow-hidden relative z-0 opacity-40 pointer-events-none">
             <motion.div
-                className="flex gap-8 py-4 px-4 whitespace-nowrap"
+                className="flex gap-6 py-4 px-4 whitespace-nowrap"
                 animate={{
                     x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
                 }}
@@ -24,16 +25,20 @@ export default function MarqueeSlider({ direction = "left" }: { direction?: "lef
                     duration: SLIDE_DURATION,
                 }}
             >
+                {/* 2セット分繰り返してシームレスなループを作る */}
                 {[...Array(2)].map((_, groupIndex) => (
-                    <div key={groupIndex} className="flex gap-8">
-                        {CARD_COLORS.map((color, i) => (
+                    <div key={groupIndex} className="flex gap-6">
+                        {MARQUEE_IMAGES.map((img, i) => (
                             <div
                                 key={i}
-                                className={`w-64 h-96 rounded-xl bg-gradient-to-br ${color} shrink-0 border-2 border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.2)] flex items-center justify-center`}
+                                className="w-80 h-48 md:w-96 md:h-56 rounded-xl shrink-0 border-2 border-white/10 shadow-[0_0_30px_rgba(255,215,0,0.15)] overflow-hidden"
                             >
-                                <div className="w-full h-full bg-black/40 flex items-center justify-center backdrop-blur-sm">
-                                    <span className="text-white/50 font-display text-4xl font-bold rotate-12">SAMPLE</span>
-                                </div>
+                                <img
+                                    src={img}
+                                    alt={`オリパ サムネ制作実績 ${i + 1}`}
+                                    className="w-full h-full object-cover"
+                                    loading="lazy"
+                                />
                             </div>
                         ))}
                     </div>
