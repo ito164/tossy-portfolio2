@@ -43,3 +43,22 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
+/* マーキーアニメーション（GPU加速: translate3d使用） */
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
